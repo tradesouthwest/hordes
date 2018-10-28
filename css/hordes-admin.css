@@ -1,0 +1,42 @@
+[class^="hrds-"] {
+box-sizing: border-box;
+} 
+.hrds-clearfix:before,
+.hrds-clearfix:after {
+content: " ";
+clear: both;
+}
+.hrds-clearfix:after {
+display: table;
+width: 100%;
+height: 1px;
+padding: 15px 0;
+}
+.edit-php.post-type-hordes table.wp-list-table tbody#the-list td{
+    padding: 6px;
+    line-height: 1;
+}  
+.edit-php.post-type-hordes table.wp-list-table tbody#the-list tr th.check-column {
+    padding: 6px 0 0 3px;
+}
+.hordes_wrap tr:nth-of-type(2n){
+    background: #fbfbfb;
+}
+.hordes_wrap {
+    max-width: 640px;
+}
+.hordes_wrap form > h2 {
+position: relative;
+font-weight: lighter;
+margin-block-start: -2em;
+border-bottom: thin solid #ddd;
+}
+.hordes_wrap form > h2:before {
+content: url('hordes11sm.png');
+position: relative;
+display: inline-block;
+left: 0px;
+margin-right: 1px;
+transform: scale(.62);
+bottom: -22px;
+}
