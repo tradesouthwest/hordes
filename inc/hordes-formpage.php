@@ -43,9 +43,8 @@ function hordes_front_post_creation()
 		if( isset( $_POST['hordes_categories'] )) { 
 			$hordes_cat  = $_POST['hordes_categories']; 
 			$hordes_cats = get_term_by( 'id', $hordes_cat, 'hordes_categories' );
-			$custom_cat  = array(
-		    	$hordes_cats->slug
-			);
+			$custom_cat  = $hordes_cats->slug;
+			
 			} else { 
 			$custom_cat  = __( 'General', 'hordes' 
 			);
