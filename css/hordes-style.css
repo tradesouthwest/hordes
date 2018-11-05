@@ -439,7 +439,9 @@ ul.hordes-pagination.pagination-alpha{
     max-width: 1.25em;
     border: none;
 }
-
+li.hordes-archive-title{
+	border-bottom: thin solid #aaa;
+}
 .hrds-select {
   width: auto;
   height: auto;
