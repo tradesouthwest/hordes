@@ -286,7 +286,7 @@ function hordes_inline_public_styles()
     $hordes_qwerty = $options['hordes_icons_alphaqwerty'];
 
     $htm = ''; 
-    $htm .= '.hordes-fanning-panel,.hordes-wrapper,.hrds-entry,.hordes-single{background:' . $hordes_color_5 . ';}.hordes-sidebar{background:' . $hordes_color_6 . ';}.hrds-favicos{visibility: ' . $hordes_favicon . ';}.hrds-list-inline li a.hrds-link,li.hrds-inline a.hrds-link,p.hrds-inline a.hrds-link,.hrds-excerpts a{color:' . $hordes_color_4 . ';}.hrds-excerpts span.title a, .hrds-excerpts span.title{color:' . $hordes_color_3 .';}.hordes-fanning-panel ul li i{padding:4px;position: relative !important;top:' . $hordes_qwerty . 'px;}';
+    $htm .= '.hordes-fanning-panel,.hordes-wrapper,.hrds-entry,.hordes-single{background:' . $hordes_color_5 . ';}.hordes-sidebar{background:' . $hordes_color_6 . ';}.hrds-favicos{visibility: ' . $hordes_favicon . ';}.hrds-list-inline li a.hrds-link,li.hrds-inline a.hrds-link,p.hrds-inline a.hrds-link,.hrds-excerpts a, .hordes-archive-title a:last-child{color:' . $hordes_color_4 . '!important;}.hrds-excerpts span.title a, .hrds-excerpts span.title,.hordes-archive-title a:first-child{color:' . $hordes_color_3 .'!important;}ul.hordes-pagination.pagination-alpha li i,.hordes-fanning-panel ul li i{padding:4px;position: relative !important;top:' . $hordes_qwerty . 'px;}';
     wp_register_style( 'hordes-entry-set', false );
     wp_enqueue_style(   'hordes-entry-set' );
     wp_add_inline_style( 'hordes-entry-set', $htm );
