@@ -99,6 +99,7 @@ li.hrds-inline .title,
   padding: 0;
   width: 100%;
   border-radius: 5px;
+  text-align:left;
 }
 .hordes-table tr,
 .hordes-table td{
