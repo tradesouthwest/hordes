@@ -277,6 +277,13 @@ position:relative;
   font-size: larger;
   font-size: 110%;
 }
+.hrds-cats a:first-letter {
+    font-weight: 700;
+    /* text-transform: uppercase; */
+}
+.hrds-cats a {
+    display: inline-block;
+}
 .single .byline{
   display: inline!important;
 }
