@@ -2,19 +2,22 @@
 /*
 Plugin Name: Hordes
 Plugin URI: http://themes.tradesouthwest.com/wordpress/plugins/
-Description: Save all your website links in mass with ease.
-Version: 1.0.0
+Description: Save all your website links and organize them with ease.
+Version: 1.0.3
 Author: tradesouthwest
 Author URI: http://tradesouthwest.com/
-License: Apache License
-License URI: See File, LICENSE
-WordPress Available:  yes
+Requires PHP: 7.4
+Requires CP:  2.2
+Text Domain:  vertycal
+Domain Path:  /languages
+License:      GPLv2 or up
+License URI:  License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 if ( ! function_exists( 'add_action' ) ) {
 	die( 'Nothing to see here...' );
 }
 /* Important constants */
-define( 'HORDES_VERSION', '1.0.0' );
+define( 'HORDES_VERSION', '1.0.3' );
 define( 'HORDES_FORMS_URL', plugin_dir_url( __FILE__ ) );
 
 /**
