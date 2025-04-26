@@ -7,11 +7,11 @@ Version: 1.0.3
 Author: tradesouthwest
 Author URI: http://tradesouthwest.com/
 Requires PHP: 7.4
-Requires CP:  2.2
+Requires CP:  2.1
 Text Domain:  vertycal
 Domain Path:  /languages
 License:      GPLv2 or up
-License URI:  License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI:  License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 */
 if ( ! function_exists( 'add_action' ) ) {
 	die( 'Nothing to see here...' );
@@ -51,13 +51,13 @@ endif;
 //activate/deactivate hooks
 function hordes_plugin_activation() 
 {
-    //flush_rewrite_rules(); 
+    flush_rewrite_rules(); 
     return false;
 }
 
 function hordes_plugin_deactivation() 
 {
-    //flush_rewrite_rules();
+    flush_rewrite_rules();
     return false;
 }
 
@@ -150,6 +150,8 @@ function hordes_load_widgets()
 { 
     require_once ( plugin_dir_path( __FILE__ ) . 'inc/Hordes_Cat_Widget.php' );
         register_widget( 'Hordes_Cat_Widget' );
+    //require_once ( plugin_dir_path( __FILE__ ) . 'inc/Hordes_Search_Widget.php' );
+      //  register_widget( 'Hordes_Search_Widget' );
 }
 add_action( 'widgets_init', 'hordes_load_widgets' );
 

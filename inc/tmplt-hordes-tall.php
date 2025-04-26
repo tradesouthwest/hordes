@@ -1,3 +1,12 @@
+<?php
+/**
+ * search form and rendering
+ *
+ */
+echo '<div class="hordes-searching-panel" role="search">';
+//do_action( 'hordes_searching_form' );
+echo '</div>';
+?>
 <table class="hordes-table"><tbody>
 <?php 
 while ( $query->have_posts() ) : 

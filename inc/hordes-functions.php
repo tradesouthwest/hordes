@@ -291,4 +291,4 @@ function hordes_inline_public_styles()
     wp_enqueue_style(   'hordes-entry-set' );
     wp_add_inline_style( 'hordes-entry-set', $htm );
 }
-add_action( 'wp_enqueue_scripts', 'hordes_inline_public_styles' ); 
+add_action( 'wp_enqueue_scripts', 'hordes_inline_public_styles' );

@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * search form and rendering
+ *
+ */
+echo '<div class="hordes-searching-panel" role="search">';
+//do_action( 'hordes_searching_form' );
+echo '</div>';
 print( '<ul class="entry hrds-entry hrdsshort">' );  
 		while ( $query->have_posts() ) : 
 			$query->the_post(); 

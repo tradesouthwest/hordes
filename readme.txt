@@ -1,7 +1,10 @@
 Plugin Name: Hordes
 Plugin URI: http://themes.tradesouthwest.com/wordpress/plugins/client
 Description: Add curated list of links with titles icons and categories.
-Version: 1.0.21
+Version: 1.0.3
+Requires PHP: 7.5
+Requires CP: 2.1
+Demo: https://plugins.classicpress-themes.com
 Author: tradesouthwest
 Author URI: http://tradesouthwest.com/
 Tags: bookmark, save links, link, organize, directory, library, marker, digest, favorites 
@@ -105,5 +108,7 @@ line 26 hordes-formpage <i> | </i><em class="hrds-author"><?php the_author(); ?>
 5. hordes-form-2.png:        front side form -
 
 == Change Log ==
+May 24 2024
+* Add search functions
 Dec 26 2018
 * font changes in tag cloud

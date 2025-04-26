@@ -48,6 +48,12 @@
   padding: 15px;
   border-radius: 5px;
 }
+.hordes-searching-panel{
+  display: block;
+  height: 70px;
+  width: 100%;
+  padding: 2em .25em 1em 0;
+}
 .hrds-widget.widget-divider ul li {
   list-style: none;
   margin: 0;

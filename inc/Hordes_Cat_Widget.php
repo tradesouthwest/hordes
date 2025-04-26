@@ -10,9 +10,9 @@ function __construct() {
     'Hordes_Cat_Widget',
     __( 'Hordes Category Tag Widget', 'hordes' ), // Name
 	array(
-        'description' => __( 'Category Widget for Hordes Plugin',
-                            'hordes' ),
-        ));
+        'description' => __( 'Category Widget for Hordes Plugin', 'hordes' ),
+        )
+	);
 }
 
 	/**
@@ -39,11 +39,11 @@ function __construct() {
  				'title_li'   => '',
 				'taxonomy'   => 'hordes_categories' 
 				) );
-			printf( $list ); 
+			echo $list; 
 			
-	print( '</div>
+	echo '</div>
 	<div class="hrds-widget widget-divider">
-			<hr>' );
+			<hr>';
 /** 
  * Retrieve an array of objects for each term in post_tag taxonomy. 
  */
