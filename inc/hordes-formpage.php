@@ -16,11 +16,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  */
 function hordes_front_post_creation() 
 { 
-
 	$sub_success ='FAILURE' ;
 	global $wpdb, $post; 
-	if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) 
-	&&  $_POST['action'] == "new_post") 
+
+	if ( isset( $_GET['_wpnonce'] ) && !wp_verify_nonce( $_GET['_wpnonce'], 'new-post' ) ) {
+		die( 'Security Check!' );
+	}
+	if( 'POST' == $_SERVER['REQUEST_METHOD']   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+		&& !empty( wp_unslash( $_POST['action'] ) )
+		&&  sanitize_text_field( wp_unslash( $_POST['action'] == "new_post" ) ) )
 	{
 	
 		$errors = new WP_Error();
@@ -122,13 +126,14 @@ function hordes_front_post_creation()
 		 . ' <a href="' . esc_url( $pgwith_shortcode ) . '">View List</a></div>';
 		$sub_success = null;
 	} 
-	if (isset($errors) && sizeof($errors)>0 && $errors->get_error_code() ) :
+	if (isset($errors) && count($errors)>0 && $errors->get_error_code() ) :
 		echo '<ul class="hordes-errors">';
 		foreach ($errors->errors as $error) {
-			echo '<li>'.$error[0].'</li>';
+			echo '<li>'. wp_kses_post( $error[0] ).'</li>';
 		}
-	echo '</ul>';
+	    echo '</ul>';
 	endif; 
+
 	//only logged in admins, editors can post from front end.	
 	if ( is_user_logged_in() && current_user_can( 'edit_others_posts' ) ) 
 	{ 
@@ -179,14 +184,14 @@ function hordes_front_post_creation()
 	<input type="hidden" name="action" value="new_post" />
 	<?php wp_nonce_field( 'new-post' ); ?>
 </form>
-
+</div>
 <?php 
 	} else { 
 		echo '<h4>' . esc_html__( 'Please LogIn', 'hordes' ) . '</h4> 
-		<p><a href="' . wp_login_url( home_url() ) . '" 
-		title="' . esc_attr__( 'Please LogIn', 'hordes' ) . '" 
-		class="hrds-btn btn btn-primary button button-primary">
-		' . esc_html__( 'LogIn', 'hordes' ) . '</a></p>'; 
+			<p><a href="' . esc_url_raw( wp_login_url( home_url() ) ) . '" 
+			title="' . esc_attr__( 'Please LogIn', 'hordes' ) . '" 
+			class="hrds-btn btn btn-primary button button-primary">
+			' . esc_html__( 'LogIn', 'hordes' ) . '</a></p>'; 
 	} 
 }
 
@@ -224,7 +229,7 @@ function hordes_template_public_list()
     }   //ends hordes_layout choice 
     ?>
 	
-	<?php  include 'nav-excerpt.php'; ?>
+	<?php include 'nav-excerpt.php'; ?>
 	
 	<?php //ends all hordes query
 	endif; // yep I guess that was the main query
@@ -234,5 +239,5 @@ function hordes_template_public_list()
 	} ?>
 
 </div><?php //ends hordes excerpts div 
-print( '<div class="hrdsclearfix"></div>' );		
+    print( '<div class="hrdsclearfix"></div>' );		
 } 

@@ -51,7 +51,7 @@ function hordes_register_custom_taxonomies()
 {
     
     $args = array(
-        'labels'              => __( 'Hordes Categories', 'Taxonomy General Name', 'hordes' ),
+        'labels'              => __( 'Hordes Categories', 'hordes' ),
         'desc'                => '', 
         'hierarchical'        => true,
         'sort'                => true,
@@ -76,7 +76,7 @@ function hordes_register_custom_taxonomies()
 function hordes_register_custom_posttag() 
 {
     register_taxonomy( 'hordes_tags', 'hordes', array(
-        'labels'              => __( 'Hordes Tags', 'Tagged as', 'hordes' ),
+        'labels'              => __( 'Hordes Tags', 'hordes' ),
         'desc'                => __( 'Identifier and search tags', 'hordes' ), 
         'hierarchical'        => false,
         'sort'                => true,

@@ -135,7 +135,7 @@ function hordes_color_field_3_render()
            id="color_wrap" 
            name="hordes_settings[hordes_color_field_3]"
            class="hordes-color-field" data-default-color="#002e63"
-           value="<?php echo $hordes_color_3; ?>"><br>
+           value="<?php echo esc_attr( $hordes_color_3 ); ?>"><br>
 <?php     
 }
 /**
@@ -158,7 +158,7 @@ function hordes_color_field_4_render()
            id="color_wrap" 
            name="hordes_settings[hordes_color_field_4]"
            class="hordes-color-field" data-default-color="#3388bb"
-           value="<?php echo $hordes_color_4; ?>"><br>
+           value="<?php echo esc_attr( $hordes_color_4 ); ?>"><br>
 <?php     
 }
 /**
@@ -181,7 +181,7 @@ function hordes_color_field_5_render()
            id="color_wrap" 
            name="hordes_settings[hordes_color_field_5]"
            class="hordes-color-field" data-default-color="#fafafa"
-           value="<?php echo $hordes_color_5; ?>">
+           value="<?php echo esc_attr( $hordes_color_5 ); ?>">
            <small><?php esc_html_e( '(Effects both content of single and content of list page)', 
            'hordes' ); ?></small>
 <?php     
@@ -206,7 +206,7 @@ function hordes_color_field_6_render()
            id="color_wrap" 
            name="hordes_settings[hordes_color_field_6]"
            class="hordes-color-field" data-default-color="#fafafa"
-           value="<?php echo $hordes_color_6; ?>"><br>
+           value="<?php echo esc_attr( $hordes_color_6 ); ?>"><br>
 <?php     
 }
 /**
@@ -258,24 +258,27 @@ function hordes_checkbox_1_render() {
 function hordes_text_field_0_render()
 {
 
-global $post;
-$label    = '';
-$shrtpage = get_option('hordes_settings')['hordes_text_field_0'];
-$dropdown = wp_dropdown_pages( array(
-    'post_type'        => 'page', 
-    'selected'         => $shrtpage, 
-    'name'             => 'hordes_settings[hordes_text_field_0]', 
-    'show_option_none' => '-- Select Page --', 
-    'option_none_value' => '0',
-    'sort_column'      => 'menu_order, post_title', 
-    'echo'             => 0 
-) ); 
-$dropdown = str_replace('<select', '<select ' . $shrtpage, $dropdown);
-printf('<label class="form-control-select"><span 
-class="form-control-title">%s</span> %s</label>', $label, $dropdown);
-printf( '<p><small>%s </small>%s</p>',
-esc_html__( 'This must be set if you want a Return Link on the form success message.', 'hordes' ),
-'' ); //add $shrtpage to debug
+    global $post;
+    $label    = '';
+    $shrtpage = get_option('hordes_settings')['hordes_text_field_0'];
+    $dropdown = wp_dropdown_pages( array(
+        'post_type'        => 'page', 
+        'selected'         => esc_attr( $shrtpage ), 
+        'name'             => 'hordes_settings[hordes_text_field_0]', 
+        'show_option_none' => '-- Select Page --', 
+        'option_none_value' => '0',
+        'sort_column'      => 'menu_order, post_title', 
+        'echo'             => 0 
+    ) ); 
+    $dropdown = str_replace('<select', '<select ' . $shrtpage, $dropdown);
+    printf('<label class="form-control-select"><span 
+        class="form-control-title">%s</span> %s</label>', 
+        $label,                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        $dropdown                       // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    );
+    printf( '<p><small>%s </small>%s</p>',
+    esc_html__( 'This must be set if you want a Return Link on the form success message.', 'hordes' ),
+    '' ); //add $shrtpage to debug
 }
 
 /**
@@ -286,23 +289,26 @@ esc_html__( 'This must be set if you want a Return Link on the form success mess
 function hordes_rediradmin_dropdown_render()
 {
 
-$label    = '';
-$shrtpage = get_option('hordes_settings')['hordes_rediradmin_dropdown'];
-$dropdown = wp_dropdown_pages( array(
-    'post_type'        => 'page', 
-    'selected'         => $shrtpage, 
-    'name'             => 'hordes_settings[hordes_rediradmin_dropdown]', 
-    'show_option_none' => '-- Select Page --', 
-    'option_none_value' => '0',
-    'sort_column'      => 'menu_order, post_title', 
-    'echo'             => 0 
-) ); 
-$dropdown = str_replace('<select', '<select ' . $shrtpage, $dropdown);
-printf('<label class="form-control-select"><span 
-class="form-control-title">%s</span> %s</label>', $label, $dropdown);
-printf( '<p><small>%s </small>%s</p>',
-esc_html__( 'Set page to be redirected upon login. Turn on or off below.', 'hordes' ),
-'' ); //add $shrtpage to debug
+    $label    = '';
+    $shrtpage = get_option('hordes_settings')['hordes_rediradmin_dropdown'];
+    $dropdown = wp_dropdown_pages( array(
+        'post_type'        => 'page', 
+        'selected'         => esc_attr( $shrtpage ), 
+        'name'             => 'hordes_settings[hordes_rediradmin_dropdown]', 
+        'show_option_none' => '-- Select Page --', 
+        'option_none_value' => '0',
+        'sort_column'      => 'menu_order, post_title', 
+        'echo'             => 0 
+    ) ); 
+    $dropdown = str_replace('<select', '<select ' . $shrtpage, $dropdown);
+    printf('<label class="form-control-select"><span 
+        class="form-control-title">%s</span> %s</label>', 
+        $label,                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        $dropdown                           // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    );
+    printf( '<p><small>%s </small>%s</p>',
+    esc_html__( 'Set page to be redirected upon login. Turn on or off below.', 'hordes' ),
+    '' ); //add $shrtpage to debug
 }
 /**
  * checkbox for 'redir admin' field
@@ -312,7 +318,7 @@ function hordes_checkbox_rediradmin_render() {
     $options = get_option('hordes_settings'); 
     $hordes_checkbox_rediradmin = (empty($options['hordes_checkbox_rediradmin'] )) 
                           ? 0 : $options['hordes_checkbox_rediradmin']; ?>
- <p><input type="hidden" 
+    <p><input type="hidden" 
            name="hordes_settings[hordes_checkbox_rediradmin]" 
            value="0" />
     <input name="hordes_settings[hordes_checkbox_rediradmin]" 
@@ -341,8 +347,7 @@ function hordes_checkbox_alphaqwerty_render() {
            type="checkbox" <?php echo esc_attr( 
            checked( 1, $hordes_checkbox_alphaqwerty, true ) ); ?> /> 	
     <?php esc_html_e( 'Check to change Alphabetic search to Keyboard style ', 'hordes' ); ?></p>
-    <small><?php esc_html_e( 'Change if search looks funny on phones.', 
-    'hordes' ); ?> </small>
+    <small><?php esc_html_e( 'Change if search looks funny on phones.', 'hordes' ); ?> </small>
     <?php  
 }
 /**
@@ -355,12 +360,12 @@ function hordes_icons_alphaqwerty_render()
     if( $options['hordes_icons_alphaqwerty'] == '' ) 
         $options['hordes_icons_alphaqwerty'] = 6; ?>
     <label class="olmin"><?php esc_html_e( 'Set position of letters in the search widget.', 
-'onlist' ); ?></label>
+        'hordes' ); ?></label>
     <input type="number" name="hordes_settings[hordes_icons_alphaqwerty]" 
            value="<?php echo esc_attr( $options['hordes_icons_alphaqwerty'] ); ?>"
            min="-9999" max="9999" /> <br>
     <small><?php esc_html_e( 'Set accordingly if theme changed or looks out of line.', 
-    'onlist' ); ?></small>
+        'hordes' ); ?></small>
     <?php
 } 
 //render section
@@ -376,11 +381,11 @@ function hordes_options_page()
     // check user capabilities
     //if ( ! current_user_can( 'manage_options' ) ) return;
     // check if the user have submitted the settings
-    // wordpress will add the "settings-updated" $_GET parameter to the url
-    if ( isset( $_GET['settings-updated'] ) ) {
-    // add settings saved message with the class of "updated"
-    add_settings_error( 'hordes_messages', 'hordes_message', 
-                    __( 'Settings Saved', 'hordes' ), 'updated' );
+    // WordPress will add the "settings-updated" $_GET parameter to the url
+    if ( isset( $_GET['settings-updated'] ) ) {    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        // add settings saved message with the class of "updated"
+        add_settings_error( 'hordes_messages', 'hordes_message', 
+                        __( 'Settings Saved', 'hordes' ), 'updated' );
     }
     // show error/update messages
     settings_errors( 'hordes_messages' ); ?>
@@ -421,7 +426,7 @@ ob_start();
 <tr><td><h4><?php esc_html_e( 'Front Side Submit Form', 'hordes' ); ?></h4>
 <p><?php esc_html_e( 'To add a front end form to a page use shortcode: [hordes_submit_post&#93; ', 'hordes' ); ?></p>
 <small><?php esc_html_e( 'The form will allow you to add title, link and tags to your post, but, only Administrators and Editors will see the form on the public side of your Website. A Featured Image maybe added to every listing but you will need to do this from the editor so that you can control the assets for each picture.', 'hordes' ); ?></small> </td></tr>
-<tr><td><p><img src="<?php echo HORDES_FORMS_URL . 'css/tswlogo.png'; ?>" alt="Hordes" title="Website Development by Tradesouthwest" width="40" /></h2>
+<tr><td><p><img src="<?php echo esc_url( HORDES_FORMS_URL ) . 'css/tswlogo.png'; ?>" alt="Hordes" title="Website Development by Tradesouthwest" width="40" /></h2>
 <em>Hordes - by Tradesouthwest =|=</em><?php esc_html_e( 'Support at ', 'hordes' ); ?> <a href="https://themes.tradesouthwest.com/support/" title="online presence" target="_blank">themes.tradesouthwest.com/support </a> <small><?php esc_html_e( '(Opens in new window.)', 'hordes' ); ?></small></p></td></tr>
 </tbody></table>
 
@@ -440,7 +445,7 @@ ob_start();
  	<dd><?php esc_html_e( '2. The shortcode to add inside of your post or page to show a custom alphabetic search bar is: ', 'hordes' ); ?><br> [hordes_search_bar] </dd>
  	<dd><?php esc_html_e( '3. To add a front end form to a page use shortcode: ', 'hordes' ); ?><br> [hordes_submit_post&#93; </dd>
  	<dd><?php esc_html_e( '4. Go through all options in Hordes Settings to activate what you want to use.', 'hordes' ); ?></dd>
-    <dd><img src="<?php echo HORDES_FORMS_URL . 'docs/imgs/hordes-editor-shortcode.png'; ?>" alt="Hordes" width="380" />
+    <dd><img src="<?php echo esc_url( HORDES_FORMS_URL ) . 'docs/imgs/hordes-editor-shortcode.png'; ?>" alt="Hordes" width="380" />
     <figcaption><?php esc_attr_e( 'Where to place a shortcode on page. This example includes Search Bar above List.', 'hordes' ); ?></figcaption></dd>
     <dd></dd>
     <dt><b><?php esc_html_e( 'Check to not show favicons in the Tall list (Optional)', 'hordes' ); ?></b></dt>
@@ -467,5 +472,5 @@ ob_start();
 </div>
 </div><br>
 <?php 
-echo ob_get_clean();
+echo wp_kses_post( ob_get_clean() );
 } 

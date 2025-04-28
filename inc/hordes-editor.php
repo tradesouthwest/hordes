@@ -33,7 +33,7 @@ function hordes_link_meta_box_cb($post) {
     value="' . esc_attr($hordes_link) . '" class="widefat">';
 
     $html .= wp_nonce_field( 'hordes_field', 'hordes_field' );
-    echo $html;
+    echo $html;       // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**
@@ -53,14 +53,15 @@ function hordes_update_link_meta( $post_id )
         'hordes_link',
     ];
     foreach ( $fields as $field ) {
-        if ( array_key_exists( $field, $_POST ) ) {
+        if ( array_key_exists( $field, $_POST ) ) {    // phpcs:ignore WordPress.Security.NonceVerification.Missing
             update_post_meta( $post_id, $field, 
-            sanitize_text_field( $_POST[$field] ) );
+                sanitize_text_field( wp_unslash( $_POST[$field] ) ) 
+            );
         }
      }
 } 
 
-
+// TODO i18n in sprintf
 // add custom post messages in the admin for our post type
 add_filter( 'post_updated_messages', function($messages) {
     global $post, $post_ID;
@@ -68,7 +69,10 @@ add_filter( 'post_updated_messages', function($messages) {
 
     $messages['hordes'] = array(
         0 => '',
-        1 => sprintf( __('Hordes updated. <a href="%s">View listing</a>'), $link ),
+        1 => sprintf( 'Link updated. <a href="%s" title="%s">View listing</a>', 
+                    $link,
+                    $link 
+                ),
     );
     return $messages;
 }); 

@@ -125,14 +125,16 @@ function hordes_display_thumbnail()
     global $post;
     $alts = esc_attr( get_the_title( $post->ID  ) );
     if ( has_post_thumbnail() ) {
-        $img = get_the_post_thumbnail_url(get_the_ID(),'hordes_thumb'); 
-        $attachment_img = '<img src="' . $img . '" alt="' . $alts . '" title="' . $alts . '" class="hrds-thumb"/>';
+        $img            = get_the_post_thumbnail_url(get_the_ID(),'hordes_thumb'); 
+        $attachment_img = '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( $alts ) . '" 
+            title="' . esc_attr( $alts ) . '" class="hrds-thumb"/>';
             
             return $attachment_img;
   } else {
     $default_thumbnail = HORDES_FORMS_URL . 'public/imgs/default-placeholder150x150.png';
     ob_start();
-    echo '<span class="hrds-thumb"><img src="' . $default_thumbnail . '" alt="' . $alts . '" title="' . $alts . '" class="hrds-thumb"/></span>';
+    echo '<span class="hrds-thumb"><img src="' . esc_url( $default_thumbnail ) . '" 
+        alt="' . esc_attr( $alts ) . '" title="' . esc_attr( $alts ) . '" class="hrds-thumb"/></span>';
     $default_thumb = ob_get_clean();
 
             return $default_thumb;
@@ -230,11 +232,12 @@ $terms = wp_get_post_terms($post->ID, 'hordes_tags');
       $output = array();
       foreach ($terms as $term) {
 
-$output[] = '<a href="' .get_term_link( $term->slug, 'hordes_tags') .'">' .$term->name .'</a>'; 
+    $output[] = '<a href="' . esc_url_raw( get_term_link( $term->slug, 'hordes_tags' )) .'">
+        ' . $term->name .'</a>'; 
 
       } 
     
-    echo join( ", ", $output);
+    echo join( ", ", wp_kses_post( $output ));
     }
 }
 

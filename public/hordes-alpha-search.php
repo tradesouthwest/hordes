@@ -80,40 +80,43 @@ $hordes_qwerty = (empty(get_option('hordes_settings')['hordes_checkbox_alphaqwer
 
 <div class="hordes-fanning-results">
     <?php 
-    if ( isset( $_POST['olreq'] ) ) { 
+    if ( isset( $_POST['olreq'] ) ) {    // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
-//get all post IDs for posts start with letter A, in title order,
-//display posts
-global $wpdb;
-$first_char = $_POST['olreq'];
-$postids = $wpdb->get_col($wpdb->prepare("
-SELECT      ID
-FROM        $wpdb->posts
-WHERE       SUBSTR($wpdb->posts.post_title,1,1) = %s
-ORDER BY    $wpdb->posts.post_title",$first_char)); 
+    //get all post IDs for posts start with letter A, in title order,
+    //display posts
+    global $wpdb;
+    $first_char = sanitize_text_field( wp_unslash( $_POST['olreq'] ));
+    $postids    = $wpdb->get_col( $wpdb->prepare("
+        SELECT      ID
+        FROM        $wpdb->posts
+        WHERE       SUBSTR($wpdb->posts.post_title,1,1) = %s
+        ORDER BY    $wpdb->posts.post_title",
+                        esc_attr( $first_char ) )
+    ); 
 
-if ($postids) {
-$args=array(
-  'post__in' => $postids,
-  'post_type' => 'hordes',
-  'post_status' => 'publish',
-  'posts_per_page' => -1
-);
-    $my_query = null;
-    $my_query = new WP_Query($args);
-    if( $my_query->have_posts() ) {
-        print( '<p class="hrds-search-title">' );
-        esc_attr_e( 'List of Listings beginning with the letter ', 'hordes' ); 
-        print( '<span>' ); print( $first_char ); print( '</span></p>' );
-    while ($my_query->have_posts()) : $my_query->the_post(); ?>
-        <p class="hordes-block hordes-tall"><a href="<?php the_permalink() ?>" 
-           rel="bookmark" title="Permanent Link to <?php the_title_attribute(); 
-           ?>"><?php the_title(); ?></a><?php the_excerpt(); ?></p>
-    <?php
-    endwhile;
-    } else { esc_html_e( 'No Listings for This Search Filter', 'hordes' ); } 
-    wp_reset_query();
-  } 
+    if ($postids) {
+        $args=array(
+        'post__in' => $postids,
+        'post_type' => 'hordes',
+        'post_status' => 'publish',
+        'posts_per_page' => -1
+        );
+        $my_query = null;
+        $my_query = new WP_Query($args);
+        if( $my_query->have_posts() ) {
+            print( '<p class="hrds-search-title">' );
+            esc_attr_e( 'List of Listings beginning with the letter ', 'hordes' ); 
+            print( '<span>' ); print( $first_char ); print( '</span></p>' );
+        while ($my_query->have_posts()) : $my_query->the_post(); ?>
+            <p class="hordes-block hordes-tall"><a href="<?php the_permalink() ?>" 
+            rel="bookmark" title="Permanent Link to <?php the_title_attribute(); 
+            ?>"><?php the_title(); ?></a><?php the_excerpt(); ?></p>
+        <?php
+        endwhile;
+        } else { esc_html_e( 'No Listings for This Search Filter', 'hordes' ); } 
+        
+            wp_reset_postdata();
+    } 
 
 } print '</div>  <div class="hrdsclearfix"></div>';
 

@@ -17,9 +17,9 @@ while ( $query->have_posts() ) :
  
 <tr class="hrds-first hrds-entry hrdstall"><td>
     
-	<?php echo hordes_display_thumbnail(); ?>
+	<?php echo wp_kses_post( hordes_display_thumbnail() ); ?>
 
-	<i class="hrds-favicos"> <?php print( $favicon ); ?> </i>
+	<i class="hrds-favicos"> <?php echo wp_kses_post( $favicon ); ?> </i>
 	<span class="title">
 		<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
     </span>

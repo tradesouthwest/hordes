@@ -136,7 +136,7 @@ add_action( 'wp_enqueue_scripts', 'hordes_enqueue_scripts' );
     // check for comments theme support
     if ( !current_theme_supports( 'comments' ) ) 
     { 
-    add_post_type_support( 'hordes', array( 'comments' ) );
+        add_post_type_support( 'hordes', array( 'comments' ) );
     }
 
 //include admin and public views
@@ -150,8 +150,6 @@ function hordes_load_widgets()
 { 
     require_once ( plugin_dir_path( __FILE__ ) . 'inc/Hordes_Cat_Widget.php' );
         register_widget( 'Hordes_Cat_Widget' );
-    //require_once ( plugin_dir_path( __FILE__ ) . 'inc/Hordes_Search_Widget.php' );
-      //  register_widget( 'Hordes_Search_Widget' );
 }
 add_action( 'widgets_init', 'hordes_load_widgets' );
 

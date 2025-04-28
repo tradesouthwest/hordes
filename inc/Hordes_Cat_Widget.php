@@ -26,10 +26,11 @@ function __construct() {
 	public function widget( $args, $instance ) 
 	{
 		// before and after widget arguments are defined by themes
-		echo $args['before_widget'];
+		echo wp_kses_post( $args['before_widget'] );
 			if ( ! empty( $instance[ 'title' ] ) )
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) 
-			. $args['after_title'];
+			echo $args['before_title']                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				. apply_filters( 'widget_title', $instance['title'] ) 
+			    . $args['after_title'];              // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			?><div class="hordes-widget"><?php  
 			$list = wp_list_categories( array( 
@@ -39,7 +40,7 @@ function __construct() {
  				'title_li'   => '',
 				'taxonomy'   => 'hordes_categories' 
 				) );
-			echo $list; 
+			echo wp_kses_post( $list ); 
 			
 	echo '</div>
 	<div class="hrds-widget widget-divider">
@@ -54,14 +55,14 @@ function __construct() {
 		print(
 		'<aside class="hrds-cats">');
 	foreach ( $tags as $tag ) :
-    echo '<span><a href="' . esc_url( get_tag_link( $tag->term_id ) ) . '" 
-	title="' . esc_attr( $tag->name ) . '">' . esc_html( $tag->name ) . '</a> | </span>';
+		echo '<span><a href="' . esc_url( get_tag_link( $tag->term_id ) ) . '" 
+		title="' . esc_attr( $tag->name ) . '">' . esc_html( $tag->name ) . '</a> | </span>';
 	endforeach;
 	print( '</aside>
 	</div>' );
 	endif;
 	// return after widget parts
-    echo $args['after_widget'];
+    echo wp_kses_post( $args['after_widget'] );
 	}
 	
 	/**
@@ -76,7 +77,7 @@ function __construct() {
 		if ( isset( $instance[ 'title' ] ) ) {
 			$title = $instance[ 'title' ];
 		}
-		else { $title = __( 'New title', 'hordes' ); }
+		else { $title = esc_html__( 'New title', 'hordes' ); }
     ?>
 
 	
