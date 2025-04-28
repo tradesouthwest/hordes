@@ -38,7 +38,7 @@ function hordes_front_post_creation()
 		}
 		//custom meta input
 		if (isset ($_POST['hordes_link'])) {
-			$hordes_link = esc_raw_url( wp_unslash( $_POST['hordes_link'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$hordes_link = esc_url_raw( wp_unslash( $_POST['hordes_link'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			} else {
 			$errors->add('empty_content', __('<strong>Notice</strong>: Please enter the contents of your post.', 'hordes')
 			);
@@ -106,23 +106,23 @@ function hordes_front_post_creation()
 				 * TODO
 				 */ 
 		}
-	} } // ends post action and check nonce
+	} } // end post action
 
 	if($sub_success == 'Success') { 
-	/**
-	 * This will redirect you to the newly created post
-     * $post = get_post($post_id);
-	 * wp_redirect($post->guid);
-	 */	
-	if( function_exists( 'hordes_get_shortcoded_page' ) ) : 
-		$pgwith_shortcode   = hordes_get_shortcoded_page();
-	else:
-		$pgwith_shortcode = '';
-	endif;
+		/**
+		 * This will redirect you to the newly created post
+		 * $post = get_post($post_id);
+		 * wp_redirect($post->guid);
+		 */	
+		if( function_exists( 'hordes_get_shortcoded_page' ) ) : 
+			$pgwith_shortcode   = hordes_get_shortcoded_page();
+		else:
+			$pgwith_shortcode = '';
+		endif;
 
-		echo '<div class="hordes-success">' . esc_html__( 'Link curated succesfully.', 'hordes' ) 
-		    . ' <a href="' . esc_url( $pgwith_shortcode ) . '">View List</a></div>';
-		$sub_success = null;
+			echo '<div class="hordes-success">' . esc_html__( 'Link curated succesfully.', 'hordes' ) 
+				. ' <a href="' . esc_url( $pgwith_shortcode ) . '">View List</a></div>';
+			$sub_success = null;
 	} 
 	if (isset($errors) && count($errors)>0 && $errors->get_error_code() ) :
 		echo '<ul class="hordes-errors">';
