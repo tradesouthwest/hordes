@@ -20,7 +20,7 @@ function hordes_front_post_creation()
 	global $wpdb, $post; 
 
 	if ( isset( $_GET['_wpnonce'] ) 
-		&& !wp_verify_nonce( $_GET['_wpnonce'], 'new-post' ) ) {
+		&& !wp_verify_nonce(  sanitize_text_field( wp_unslash( $_GET['_wpnonce'], 'new-post' ) ) ) {
 		die( 'Security Check!' );
 	}
 	if( 'POST' == $_SERVER['REQUEST_METHOD']   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
@@ -38,7 +38,7 @@ function hordes_front_post_creation()
 		}
 		//custom meta input
 		if (isset ($_POST['hordes_link'])) {
-			$hordes_link = sanitize_url( wp_unslash($_POST['hordes_link'] ) );
+			$hordes_link = esc_raw_url( wp_unslash( $_POST['hordes_link'] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			} else {
 			$errors->add('empty_content', __('<strong>Notice</strong>: Please enter the contents of your post.', 'hordes')
 			);
