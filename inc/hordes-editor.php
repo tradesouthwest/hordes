@@ -55,7 +55,7 @@ function hordes_update_link_meta( $post_id )
     foreach ( $fields as $field ) {
         if ( array_key_exists( $field, $_POST ) ) {    // phpcs:ignore WordPress.Security.NonceVerification.Missing
             update_post_meta( $post_id, $field, 
-                sanitize_text_field( wp_unslash( $_POST[$field] ) ) 
+                sanitize_text_field( wp_unslash( $_POST[$field] ) )    // phpcs:ignore WordPress.Security.NonceVerification.Missing
             );
         }
      }

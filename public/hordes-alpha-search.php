@@ -85,7 +85,7 @@ $hordes_qwerty = (empty(get_option('hordes_settings')['hordes_checkbox_alphaqwer
     //get all post IDs for posts start with letter A, in title order,
     //display posts
     global $wpdb;
-    $first_char = sanitize_text_field( wp_unslash( $_POST['olreq'] ));
+    $first_char = sanitize_text_field( wp_unslash( $_POST['olreq'] )); // phpcs:ignore WordPress.Security.NonceVerification.Missing
     $postids    = $wpdb->get_col( $wpdb->prepare("
         SELECT      ID
         FROM        $wpdb->posts
@@ -106,7 +106,7 @@ $hordes_qwerty = (empty(get_option('hordes_settings')['hordes_checkbox_alphaqwer
         if( $my_query->have_posts() ) {
             print( '<p class="hrds-search-title">' );
             esc_attr_e( 'List of Listings beginning with the letter ', 'hordes' ); 
-            print( '<span>' ); print( $first_char ); print( '</span></p>' );
+            print( '<span>' ); echo esc_attr( $first_char ); print( '</span></p>' );
         while ($my_query->have_posts()) : $my_query->the_post(); ?>
             <p class="hordes-block hordes-tall"><a href="<?php the_permalink() ?>" 
             rel="bookmark" title="Permanent Link to <?php the_title_attribute(); 

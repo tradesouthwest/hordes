@@ -19,47 +19,46 @@ function hordes_front_post_creation()
 	$sub_success ='FAILURE' ;
 	global $wpdb, $post; 
 
-	if ( isset( $_GET['_wpnonce'] ) && !wp_verify_nonce( $_GET['_wpnonce'], 'new-post' ) ) {
+	if ( isset( $_GET['_wpnonce'] ) 
+		&& !wp_verify_nonce( $_GET['_wpnonce'], 'new-post' ) ) {
 		die( 'Security Check!' );
 	}
 	if( 'POST' == $_SERVER['REQUEST_METHOD']   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-		&& !empty( wp_unslash( $_POST['action'] ) )
+		&& !empty( sanitize_text_field( wp_unslash( $_POST['action'] ) ) )
 		&&  sanitize_text_field( wp_unslash( $_POST['action'] == "new_post" ) ) )
 	{
-	
 		$errors = new WP_Error();
-		$default_category = __( 'General' );
+		$default_category = esc_attr__( 'General', 'hordes' );
 		// Do some minor form validation to make sure there is content
-		if (isset ($_POST['title'])) {
-			$title       =  $_POST['title'];
+		if (isset ( $_POST['title'] )) {
+			$title = sanitize_text_field( wp_unslash( $_POST['title'] ) );
 			} else {
-			$errors->add('empty_title', __('<strong>Notice</strong>: Please enter a title for your post.', 'kvcodes')
+			$errors->add('empty_title', __('<strong>Notice</strong>: Please enter a title for your post.', 'hordes')
 			);
 		}
 		//custom meta input
 		if (isset ($_POST['hordes_link'])) {
-			$hordes_link = $_POST['hordes_link'];
+			$hordes_link = sanitize_url( wp_unslash($_POST['hordes_link'] ) );
 			} else {
-			$errors->add('empty_content', __('<strong>Notice</strong>: Please enter the contents of your post.', 'kvcodes')
+			$errors->add('empty_content', __('<strong>Notice</strong>: Please enter the contents of your post.', 'hordes')
 			);
 		}
 		//custom cat input
 		if( isset( $_POST['hordes_categories'] )) { 
-			$hordes_cat  = $_POST['hordes_categories']; 
+			$hordes_cat  = sanitize_text_field( wp_unslash( $_POST['hordes_categories'] ) ); 
 			$hordes_cats = get_term_by( 'id', $hordes_cat, 'hordes_categories' );
 			$custom_cat  = $hordes_cats->slug;
 			
 			} else { 
-			$custom_cat  = __( 'General', 'hordes' 
-			);
+			$custom_cat  = esc_html__( 'General', 'hordes' );
 		}
 		// custom tag input
 		if( isset( $_POST['hordes_tags'] ) ) {
-			$hordes_tags = $_POST['hordes_tags'];
+			$hordes_tags = sanitize_text_field( wp_unslash( $_POST['hordes_tags'] ) );
 			if( $hordes_tags ) { 
 				
 		    wp_set_post_terms( $hordes_tags, array(
-					$_POST['hordes_tags'],
+				sanitize_text_field( wp_unslash( $_POST['hordes_tags'] ) ),
 					'hordes_tags',
 					false )
 				);
@@ -87,7 +86,7 @@ function hordes_front_post_creation()
 		//SAVE THE POST
         $query = $wpdb->prepare('SELECT ID FROM ' . $wpdb->posts . ' 
         WHERE post_title = %s', $title  );
-		$wpdb->query( $query );
+		$wpdb->query( $query );        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		if (!$wpdb->num_rows ) 
 		{	
 			if ( !$errors->get_error_code() ) 
@@ -121,9 +120,8 @@ function hordes_front_post_creation()
 		$pgwith_shortcode = '';
 	endif;
 
-		echo '<div class="hordes-success">' . __( 'Link curated succesfully.',
-		 'post_new' ) 
-		 . ' <a href="' . esc_url( $pgwith_shortcode ) . '">View List</a></div>';
+		echo '<div class="hordes-success">' . esc_html__( 'Link curated succesfully.', 'hordes' ) 
+		    . ' <a href="' . esc_url( $pgwith_shortcode ) . '">View List</a></div>';
 		$sub_success = null;
 	} 
 	if (isset($errors) && count($errors)>0 && $errors->get_error_code() ) :
@@ -147,7 +145,7 @@ function hordes_front_post_creation()
 	?>
 <div class="hordes-wrapper">
 	<header>
-	<h4><?php echo esc_html__( 'Add your link ', 'hordes' ) . '<span class="' . $hrdscls . '">' . $author->nickname . '</span>'; ?></h4>
+	<h4><?php echo esc_html__( 'Add your link ', 'hordes' ) . '<span class="' . esc_attr( $hrdscls ) . '">' . esc_html( $author->nickname ) . '</span>'; ?></h4>
 	</header>
 <form id="new_post" name="new_post" method="post" action="" enctype="multipart/form-data">
 	<!-- post name -->
@@ -200,8 +198,8 @@ function hordes_template_public_list()
 {
     global $post, $paged;
 
-    if ( get_query_var('paged') ) $paged = get_query_var('paged');
-    if ( get_query_var('page') ) $paged = get_query_var('page');
+    if ( get_query_var('paged') ) $paged = get_query_var('paged'); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+    if ( get_query_var('page') ) $paged = get_query_var('page'); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
     
     $query = new WP_Query( array( 
 		'post_type' => 'hordes', 

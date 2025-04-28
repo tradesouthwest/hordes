@@ -29,7 +29,7 @@ function __construct() {
 		echo wp_kses_post( $args['before_widget'] );
 			if ( ! empty( $instance[ 'title' ] ) )
 			echo $args['before_title']                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				. apply_filters( 'widget_title', $instance['title'] ) 
+				. wp_kses_post( apply_filters( 'widget_title', $instance['title'] ) ) 
 			    . $args['after_title'];              // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			?><div class="hordes-widget"><?php  
@@ -80,12 +80,11 @@ function __construct() {
 		else { $title = esc_html__( 'New title', 'hordes' ); }
     ?>
 
-	
-<p>
-<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title:', 'hordes' ); ?></label>
-<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-</p>
-<?php
+	<p>
+	<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'hordes' ); ?></label>
+	<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+	</p>
+	<?php
 	}
 	/**
 	 * Sanitize widget form values as they are saved.
@@ -99,9 +98,10 @@ function __construct() {
 	 */
 	// Updating widget replacing old instances with new
 	public function update( $new_instance, $old_instance ) {
-	$instance = array();
-	$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-	return $instance;
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? wp_strip_all_tags( $new_instance['title'] ) : '';
+		
+			return $instance;
 	}
 } // Ends class Hordes_Cat_Widget
 ?>
