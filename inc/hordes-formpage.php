@@ -20,9 +20,9 @@ function hordes_front_post_creation()
 	global $wpdb, $post; 
 
 	if ( isset( $_GET['_wpnonce'] ) 
-		&& !wp_verify_nonce(  sanitize_text_field( wp_unslash( $_GET['_wpnonce'], 'new-post' ) ) ) {
+		&& !wp_verify_nonce(  sanitize_text_field( wp_unslash( $_GET['_wpnonce'], 'new-post' ) ) ) ) {
 		die( 'Security Check!' );
-	}
+	} else {
 	if( 'POST' == $_SERVER['REQUEST_METHOD']   // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 		&& !empty( sanitize_text_field( wp_unslash( $_POST['action'] ) ) )
 		&&  sanitize_text_field( wp_unslash( $_POST['action'] == "new_post" ) ) )
@@ -106,7 +106,7 @@ function hordes_front_post_creation()
 				 * TODO
 				 */ 
 		}
-	}
+	} } // ends post action and check nonce
 
 	if($sub_success == 'Success') { 
 	/**

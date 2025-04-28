@@ -51,9 +51,7 @@ get_header(); ?>
                                                                     ', ' ); ?>
                     <i> | </i><em class="byline"><?php the_author(); ?></em>
                     <i> | </i><time><?php echo esc_attr( get_the_date() ); ?></time>
-                    <span class="hrds-tags"> | <?php 
-                    printf( hordes_get_terms_tag_list() ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    ?></span>
+                    <span class="hrds-tags"> | <?php echo wp_kses_post( hordes_get_terms_tag_list() ); ?></span>
                     </li>
                 </ul>
                 <p class="edit-link"><?php edit_post_link(__( 'Edit', 'hordes'), ' '); ?></p>
