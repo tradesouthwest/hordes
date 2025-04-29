@@ -1,16 +1,16 @@
 # Hordes
-Front side submitted form to add links or bookmarks of websites. Mad for creators and ClassicPress.
+Front side submitted form to add links or bookmarks of websites. Made for creators and ClassicPress.
 
-Plugin Name: Hordes
-Plugin URI: http://themes.tradesouthwest.com/wordpress/plugins/client
-Description: Add curated list of links with titles icons and categories.
-Version: 1.0.3
-Requires PHP: 7.5
-Requires CP: 2.1
-Demo: https://plugins.classicpress-themes.com
-Author: tradesouthwest
-Author URI: http://tradesouthwest.com/
-Tags: bookmark, save links, link, organize, directory, library, marker, digest, favorites 
+- Plugin Name: Hordes
+- Plugin URI: http://themes.tradesouthwest.com/wordpress/plugins/client
+- Description: Add curated list of links with titles icons and categories.
+- Version: 1.0.3
+- Requires PHP: 7.5
+- Requires CP: 2.1
+- Demo: https://plugins.classicpress-themes.com
+- Author: tradesouthwest
+- Author URI: http://tradesouthwest.com/
+- Tags: bookmark, save links, link, organize, directory, library, marker, digest, favorites 
 
 ## WordPress plugin available upon request
 
