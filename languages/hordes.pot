@@ -1,7 +1,8 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Hordes\n"
-"POT-Creation-Date: 2018-10-27 20:56-0700\n"
+"POT-Creation-Date: 2025-05-12 09:20-0700\n"
 "PO-Revision-Date: 2018-10-27 20:56-0700\n"
 "Last-Translator: Tradesouthwest <tradesouthwest@gmail.com>\n"
 "Language-Team: Tradesouthwest <tradesouthwest@gmail.com>\n"
@@ -9,10 +10,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_x;_n;__esc_html;"
 "_esc_html_e;_esc_attr_e;__esc_attr\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: hordes-register.php:11 hordes-register.php:12
@@ -83,6 +84,14 @@ msgstr ""
 msgid "Identifier and search tags"
 msgstr ""
 
+#: inc/Hordes_Cat_Widget.php:11
+msgid "Hordes Category Tag Widget"
+msgstr ""
+
+#: inc/Hordes_Cat_Widget.php:13
+msgid "Category Widget for Hordes Plugin"
+msgstr ""
+
 #: inc/hordes-adminpage.php:15
 msgid "Settings"
 msgstr ""
@@ -139,45 +148,20 @@ msgstr ""
 msgid "Set Position of letters"
 msgstr ""
 
-#: inc/hordes-adminpage.php:383
+#: inc/hordes-adminpage.php:388
 msgid "Settings Saved"
-msgstr ""
-
-#: inc/Hordes_Cat_Widget.php:11
-msgid "Hordes Category Tag Widget"
-msgstr ""
-
-#: inc/Hordes_Cat_Widget.php:13
-msgid "Category Widget for Hordes Plugin"
-msgstr ""
-
-#: inc/Hordes_Cat_Widget.php:79
-msgid "New title"
 msgstr ""
 
 #: inc/hordes-editor.php:13
 msgid "Hordes List Link"
 msgstr ""
 
-#: inc/hordes-editor.php:71
-#, php-format
-msgid "Hordes updated. <a href=\"%s\">View listing</a>"
-msgstr ""
-
-#: inc/hordes-formpage.php:27 inc/hordes-formpage.php:50
-msgid "General"
-msgstr ""
-
-#: inc/hordes-formpage.php:32
+#: inc/hordes-formpage.php:36
 msgid "<strong>Notice</strong>: Please enter a title for your post."
 msgstr ""
 
-#: inc/hordes-formpage.php:39
+#: inc/hordes-formpage.php:43
 msgid "<strong>Notice</strong>: Please enter the contents of your post."
-msgstr ""
-
-#: inc/hordes-formpage.php:121
-msgid "Link curated succesfully."
 msgstr ""
 
 #: public/templates/single-hordes.php:57

@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Hordes
-Plugin URI: http://themes.tradesouthwest.com/wordpress/plugins/
-Description: Save all your website links and organize them with ease.
-Version: 1.0.3
-Author: tradesouthwest
-Author URI: http://tradesouthwest.com/
+Plugin Name:  Hordes
+Plugin URI:   http://themes.tradesouthwest.com/wordpress/plugins/
+Description:  Save all your website links and organize them with ease.
+Version:      1.0.4
+Author:       tradesouthwest
+Author URI:   http://tradesouthwest.com/
 Requires PHP: 7.4
 Requires CP:  2.1
-Text Domain:  vertycal
+Text Domain:  hordes
 Domain Path:  /languages
 License:      GPLv2 or up
 License URI:  License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -17,7 +17,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	die( 'Nothing to see here...' );
 }
 /* Important constants */
-define( 'HORDES_VERSION', '1.0.3' );
+define( 'HORDES_VERSION', '1.0.4' );
 define( 'HORDES_FORMS_URL', plugin_dir_url( __FILE__ ) );
 
 /**
@@ -25,9 +25,9 @@ define( 'HORDES_FORMS_URL', plugin_dir_url( __FILE__ ) );
  * has ran first or you will have to run `flush_rewrite()`.
 */
 require_once ( plugin_dir_path( __FILE__ ) . 'hordes-register.php' );
-add_action( 'init', 'hordes_custom_post_type', 1 );
-add_action( 'init', 'hordes_register_custom_taxonomies', 1 ); 
-add_action( 'init', 'hordes_register_custom_posttag', 1 ); 
+add_action( 'init', 'hordes_custom_post_type' );
+add_action( 'init', 'hordes_register_custom_taxonomies' ); 
+add_action( 'init', 'hordes_register_custom_posttag' ); 
 
 /** 
  * Custom post type onlist_post.
@@ -82,10 +82,10 @@ function hordes_loadtranslations () {
 add_action('plugins_loaded', 'hordes_loadtranslations');
 
 // hook the plugin activation
-register_activation_hook(   __FILE__, 'hordes_plugin_activation');
-register_deactivation_hook( __FILE__, 'hordes_plugin_deactivation');
-register_uninstall_hook(__FILE__,     'hordes_plugin_uninstall');
-add_action( 'after_switch_theme',     'hordes_plugin_reactivate' );	
+register_activation_hook(   __FILE__, 'hordes_plugin_activation' );
+register_deactivation_hook( __FILE__, 'hordes_plugin_deactivation' );
+register_uninstall_hook(__FILE__,     'hordes_plugin_uninstall' );
+//add_action( 'after_switch_theme',     'hordes_plugin_reactivate' );	
 
 /**
  * Plugin Scripts
@@ -104,9 +104,9 @@ function hordes_admin_enqueue_scripts()
     wp_enqueue_script('hordes-plugin', 
         plugins_url(  'js/hordes-plugin.js', __FILE__ ), 
                array( 'wp-color-picker' ), false, true );
-    if ( ! did_action('wp_enqueue_media' ) ) {
+    /* if ( ! did_action('wp_enqueue_media' ) ) {
         wp_enqueue_media();
-    }
+    } */
 }
 add_action( 'admin_enqueue_scripts', 'hordes_admin_enqueue_scripts' );  
 endif;

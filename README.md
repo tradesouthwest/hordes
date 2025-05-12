@@ -4,7 +4,7 @@ Front side submitted form to add links or bookmarks of websites. Made for creato
 - Plugin Name: Hordes
 - Plugin URI: https://github.com/tradesouthwest/hordes
 - Description: Add curated list of links with titles icons and categories.
-- Version: 1.0.3
+- Version: 1.0.4
 - Requires PHP: 7.5
 - Requires CP: 2.1
 - Demo: https://plugins.classicpress-themes.com
