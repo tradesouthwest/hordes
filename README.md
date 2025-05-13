@@ -109,7 +109,10 @@ line 26 hordes-formpage <i> | </i><em class="hrds-author"><?php the_author(); ?>
 5. hordes-success1.png:       front side form -
 
 == Change Log ==
-May 24, 2025
+May 13, 2025
+1.0.4 - 1.0.5
+* fixed type error
+Apr 24, 2025
 1.0.3
 * added search functionality
 * prepare for CP

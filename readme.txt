@@ -1,7 +1,7 @@
 Plugin Name: Hordes
 Plugin URI: http://themes.tradesouthwest.com/wordpress/plugins/client
 Description: Add curated list of links with titles icons and categories.
-Version: 1.0.4
+Version: 1.0.5
 Requires PHP: 7.5
 Requires CP: 2.1
 Demo: https://plugins.classicpress-themes.com

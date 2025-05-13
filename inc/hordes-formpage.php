@@ -124,7 +124,7 @@ function hordes_front_post_creation()
 				. ' <a href="' . esc_url( $pgwith_shortcode ) . '">View List</a></div>';
 			$sub_success = null;
 	} 
-	if (isset($errors) && count($errors)>0 && $errors->get_error_code() ) :
+	if ( isset($errors) && $errors->get_error_code() ) :
 		echo '<ul class="hordes-errors">';
 		foreach ($errors->errors as $error) {
 			echo '<li>'. wp_kses_post( $error[0] ).'</li>';
