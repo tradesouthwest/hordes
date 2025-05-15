@@ -206,7 +206,7 @@ function  hordes_category_displayin_frontside( $taxonomy )
         'child_of'           => 0,
         'exclude'            => '',
         'echo'               => 1,
-        'selected'           => $selected_id,
+        'selected'           => (empty ($selected_id ) ) ? 0 : $selected_id,
         'hierarchical'       => 1, 
         'name'               => 'hordes_categories',    
         'id'                 => 'hordes_categoriesDropdown',

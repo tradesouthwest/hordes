@@ -1,7 +1,7 @@
 <?php
 /**
  * Hordes admin setting page
- * @since 1.0.0
+ * @since 1.0.5
  */  
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -260,7 +260,7 @@ function hordes_text_field_0_render()
 
     global $post;
     $label    = '';
-    $shrtpage = get_option('hordes_settings')['hordes_text_field_0'];
+    $shrtpage = (empty ( get_option('hordes_settings')['hordes_text_field_0'] )) ? '0' : get_option('hordes_settings')['hordes_text_field_0'];
     $dropdown = wp_dropdown_pages( array(
         'post_type'        => 'page', 
         'selected'         => esc_attr( $shrtpage ), 
@@ -290,7 +290,7 @@ function hordes_rediradmin_dropdown_render()
 {
 
     $label    = '';
-    $shrtpage = get_option('hordes_settings')['hordes_rediradmin_dropdown'];
+    $shrtpage = (empty (get_option('hordes_settings')['hordes_rediradmin_dropdown'] )) ? '0' : get_option('hordes_settings')['hordes_rediradmin_dropdown'];
     $dropdown = wp_dropdown_pages( array(
         'post_type'        => 'page', 
         'selected'         => esc_attr( $shrtpage ), 
@@ -357,12 +357,12 @@ function hordes_checkbox_alphaqwerty_render() {
 function hordes_icons_alphaqwerty_render()
 {
     $options = get_option('hordes_settings');
-    if( $options['hordes_icons_alphaqwerty'] == '' ) 
-        $options['hordes_icons_alphaqwerty'] = 6; ?>
+    $val     = ( empty ( $options['hordes_icons_alphaqwerty'] )) 
+               ? '6' : $options['hordes_icons_alphaqwerty']; ?>
     <label class="olmin"><?php esc_html_e( 'Set position of letters in the search widget.', 
         'hordes' ); ?></label>
     <input type="number" name="hordes_settings[hordes_icons_alphaqwerty]" 
-           value="<?php echo esc_attr( $options['hordes_icons_alphaqwerty'] ); ?>"
+           value="<?php echo esc_attr( $val ); ?>"
            min="-9999" max="9999" /> <br>
     <small><?php esc_html_e( 'Set accordingly if theme changed or looks out of line.', 
         'hordes' ); ?></small>

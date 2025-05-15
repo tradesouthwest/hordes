@@ -33,7 +33,7 @@ $labels = array(
         'show_in_nav_menus'  => false,
         'query_var'          => true,
         'capability_type'    => 'post',
-        'rewrite'            => array( 'slug'       => 'hordes', 
+        'rewrite'            => array( 'slug' => 'hordes-link', 
                                        'with_front' => false ),
         'map_meta_cap'       => true,
         'supports'           => array( 'title', 'thumbnail', 'revisions' ),

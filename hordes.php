@@ -57,7 +57,7 @@ function hordes_plugin_activation()
 
 function hordes_plugin_deactivation() 
 {
-    flush_rewrite_rules();
+    //flush_rewrite_rules();
     return false;
 }
 
