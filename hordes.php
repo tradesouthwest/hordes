@@ -3,7 +3,7 @@
 Plugin Name:  Hordes
 Plugin URI:   http://themes.tradesouthwest.com/wordpress/plugins/
 Description:  Save all your website links and organize them with ease.
-Version:      1.0.5
+Version:      1.0.6
 Author:       tradesouthwest
 Author URI:   http://tradesouthwest.com/
 Requires PHP: 7.4
@@ -17,7 +17,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	die( 'Nothing to see here...' );
 }
 /* Important constants */
-define( 'HORDES_VERSION', '1.0.5' );
+define( 'HORDES_VERSION', '1.0.6' );
 define( 'HORDES_FORMS_URL', plugin_dir_url( __FILE__ ) );
 
 /**

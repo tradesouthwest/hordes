@@ -110,8 +110,9 @@ line 26 hordes-formpage <i> | </i><em class="hrds-author"><?php the_author(); ?>
 
 == Change Log ==
 May 13, 2025
-1.0.4 - 1.0.5
+1.0.4 - 1.0.6
 * fixed type error
+* fixed empty values
 Apr 24, 2025
 1.0.3
 * added search functionality
